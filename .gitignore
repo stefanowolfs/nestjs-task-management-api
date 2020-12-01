@@ -32,3 +32,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# node package version control files
+yarn.lock
+package-json.lock
