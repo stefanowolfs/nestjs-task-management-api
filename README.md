@@ -38,3 +38,16 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Project status
+
+- [x] Create CRUD for the tasks
+- [x] Validate all endpoint received data
+- [x] Configure postgres database
+- [x] Add user authentication routes
+- [x] Add cryptography strategies on user auhentication
+- [ ] Add JWT to authenticate acesses
+- [ ] Configure application logging
+- [ ] Add tests coverage with jest
+- [ ] Change repository to use mongoDB
+- [ ] Change application to serve data with graphQL
