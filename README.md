@@ -46,7 +46,7 @@ $ npm run test:cov
 - [x] Configure postgres database
 - [x] Add user authentication routes
 - [x] Add cryptography strategies on user auhentication
-- [ ] Add JWT to authenticate acesses
+- [x] Add JWT to authenticate accesses
 - [ ] Configure application logging
 - [ ] Add tests coverage with jest
 - [ ] Change repository to use mongoDB
