@@ -1,7 +1,7 @@
 db:
   host: 'localhost'
-  username: 'postgres'
-  password: 'postgres'
+  username: 'admin'
+  password: 'secret'
   synchronize: true
   port: 5432
   database: 'taskmanagement'
