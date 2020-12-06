@@ -3,7 +3,6 @@ db:
   username: 'postgres'
   password: 'postgres'
   synchronize: true
-  type: 'postgres'
   port: 5432
   database: 'taskmanagement'
 

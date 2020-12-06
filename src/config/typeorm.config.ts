@@ -1,13 +1,16 @@
 import { join } from 'path';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as config from 'config';
+
+const dbConfig = config.get('db');
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'admin',
-  password: 'secret',
-  database: 'taskmanagement',
+  type: dbConfig.type,
+  host: dbConfig.host,
+  port: dbConfig.port,
+  username: dbConfig.username,
+  password: dbConfig.password,
+  database: dbConfig.database,
   entities: [join(__dirname, '../', '**', '*.entity.{ts,js}')],
-  synchronize: true, // not recomended in production to leave this true
+  synchronize: dbConfig.synchronize,
 };
