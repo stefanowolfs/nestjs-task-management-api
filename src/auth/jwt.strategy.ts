@@ -5,13 +5,13 @@ import { Strategy, ExtractJwt } from 'passport-jwt';
 import { JwtPayload } from './jwt-payload.interface';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
-
+import * as config from 'config';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: '@myCustom_TopçÇ$Secret2020!',
+      secretOrKey: config.get('jwt.secret'),
     });
   }
 
@@ -19,9 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     console.log('validating', payload);
     const { username } = payload;
     const user = this.userRepository.findOne({ username });
-
     if (!user) throw new UnauthorizedException();
-
     return user;
   }
 }
