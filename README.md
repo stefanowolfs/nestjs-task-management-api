@@ -48,7 +48,7 @@ $ npm run test:cov
 - [x] Add cryptography strategies on user auhentication
 - [x] Add JWT to authenticate accesses
 - [x] Configure application logging
-- [ ] Configure environment variables
+- [x] Configure environment variables
 - [ ] Add tests coverage with jest
 - [ ] Change repository to use mongoDB
 - [ ] Change application to serve data with graphQL
