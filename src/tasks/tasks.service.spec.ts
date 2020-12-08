@@ -5,6 +5,8 @@ import { TaskStatus } from './tasks-status.enum';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { Task } from './task.entity';
 import { User } from '../auth/user.entity';
+import { NotFoundException } from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 // since we are going to use this same user a lot, I declared it here
 const mockUser = new User();
@@ -15,6 +17,7 @@ mockUser.username = 'Test User';
 const mockTaskRepository = () => ({
   getTasks: jest.fn(),
   findOne: jest.fn(),
+  createTask: jest.fn(),
 });
 
 describe('tasksService', () => {
@@ -63,6 +66,27 @@ describe('tasksService', () => {
           userId: mockUser.id,
         },
       });
+    });
+
+    it('throws an error as task is not found', () => {
+      taskRepository.findOne.mockResolvedValue(null);
+
+      expect(tasksService.getTaskById(1, mockUser)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('createTask', () => {
+    it('calls taskRepository.createTask() and successfully returns the result', async () => {
+      const mockTask: CreateTaskDto = {
+        title: 'Test task',
+        description: 'Test desc',
+      };
+      taskRepository.createTask.mockResolvedValue(mockTask);
+
+      expect(taskRepository.createTask).not.toHaveBeenCalled();
+      const result = await tasksService.createTask(mockTask, mockUser);
+      expect(taskRepository.createTask).toHaveBeenCalledWith(mockTask, mockUser);
+      expect(result).toEqual(mockTask);
     });
   });
 });
